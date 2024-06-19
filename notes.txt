@@ -1,0 +1,6 @@
+1. navbar is not working (solid) when scroll active 
+  (done, using sx)
+2. particles is not working 
+  (done, using previous version "react-tsparticles": "^1.18.12")
+3. styling sx and classes, what do yo to use?
+4. css font still wrong.
