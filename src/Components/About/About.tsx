@@ -63,22 +63,18 @@ const About = () => {
           </Typography>
           <div style={{ paddingBottom: "2%" }} />
           <Typography variant="body1">
-            I have experienced work on web and mobile development with various
-            framework / library such as Javascript, React, React Native, Vue,
-            Express JS, NodeJs, Typescript, MySQL, PostgreSQL. I have experience
-            working on Bank / Finance, Video Commerce, Real Estate Commerce,
-            Funding Company. Currently I'm curious and learning about Go
-            Language (Performance), and Python (Data Science). Some on my
-            hobbies are Playing Futsal, Playing Video Games, Trying solve
-            codewars problems, and Travelling with my wife. I have experience
-            working in web and mobile development with various frameworks and
-            libraries such as JavaScript, React, React Native, Vue, Express.js,
-            Node.js, TypeScript, MySQL, and PostgreSQL. I have worked in
-            industries including Banking/Finance, Video Commerce, Real Estate
-            Commerce, and Funding Companies. Currently, I am curious about and
-            learning Go (for performance) and Python (for data science). Some of
-            my hobbies include playing futsal, playing video games, watching
-            movies, solving Codewars problems, and traveling with my wife.
+            I have experience working in web and mobile development with various
+            frameworks and libraries such as JavaScript, React, React Native,
+            Vue, Express.js, Node.js, TypeScript, MySQL, and PostgreSQL. I have
+            worked in industries including Banking/Finance, Video Commerce, Real
+            Estate Commerce, and Funding Companies. <br />
+            <br />
+            Currently, I am curious about and learning Go (for performance) and
+            Python (for data science). Some of my hobbies include playing
+            futsal, playing video games, watching movies, solving Codewars
+            problems, and traveling with my wife.
+            <br />
+            <br />
             <b>
               Currently, I am seeking a full-time job as a Full Stack Developer.
             </b>
