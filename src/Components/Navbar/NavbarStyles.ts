@@ -1,8 +1,9 @@
 //Styling for header content
 import { makeStyles } from "@mui/styles"
+import { Theme } from "@mui/material/styles"
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const useStyles = makeStyles((theme: any) => {
+const useStyles = makeStyles((theme: Theme) => {
   console.log(theme)
   return {
     navbarSolid: {
