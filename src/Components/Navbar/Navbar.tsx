@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-//React/Material UI Libraries
 import React, { useEffect, useRef, useState } from "react"
 import {
   useMediaQuery,
@@ -12,8 +10,10 @@ import {
 } from "@mui/material"
 import { Link } from "react-scroll"
 import { Menu } from "@mui/icons-material"
+
 import useStyles, { NavbarStylesSx } from "./NavbarStyles"
 import logo from "./OscarLogo.png"
+
 type BackgroundType =
   | "navbarTransparent"
   | "navbarSolid"

@@ -1,5 +1,4 @@
-// dependancies
-import React from "react"
+import React, { useState } from "react"
 import {
   Grid,
   Typography,
@@ -9,8 +8,6 @@ import {
   useMediaQuery,
 } from "@mui/material"
 // import emailjs from "emailjs-com"
-
-// icons
 import { FaGithub, FaLinkedin, FaPhone } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
 
@@ -28,12 +25,12 @@ const Contact = () => {
   const lg = useMediaQuery("(min-width: 960px)")
 
   // state declaration
-  const [name, setName] = React.useState("")
-  const [email, setEmail] = React.useState("")
-  const [message, setMessage] = React.useState("")
-  const [errorName, setErrorName] = React.useState(false)
-  const [errorEmail, setErrorEmail] = React.useState(false)
-  const [errorMessage, setErrorMessage] = React.useState(false)
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+  const [errorName, setErrorName] = useState(false)
+  const [errorEmail, setErrorEmail] = useState(false)
+  const [errorMessage, setErrorMessage] = useState(false)
 
   // event handler
   const submitHander = (e: React.FormEvent<HTMLFormElement>) => {

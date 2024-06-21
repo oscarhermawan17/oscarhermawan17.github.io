@@ -1,10 +1,6 @@
-//Styling for header content
 import { makeStyles } from "@mui/styles"
-import { Theme } from "@mui/material/styles"
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const useStyles = makeStyles((theme: Theme) => {
-  console.log(theme)
+const useStyles = makeStyles(() => {
   return {
     navbarSolid: {
       transition: "0.5s",
@@ -51,6 +47,7 @@ const useStyles = makeStyles((theme: Theme) => {
   }
 })
 
+// Trying to hard replace MUI CSS
 export const NavbarStylesSx = {
   navbarSolid: {
     transition: "0.5s",

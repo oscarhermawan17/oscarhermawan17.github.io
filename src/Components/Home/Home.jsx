@@ -1,4 +1,3 @@
-// dependancies
 import {
   useMediaQuery,
   Typography,
@@ -10,10 +9,9 @@ import { Link } from "react-scroll"
 import Typewriter from "typewriter-effect"
 import { FaGithub, FaLinkedin, FaYoutube } from "react-icons/fa"
 import { IoDocumentText } from "react-icons/io5"
+
 import photoMe from "./Oscar.png"
 import Resume from "./Resume.pdf"
-
-// file imports
 import useStyles, { HomeStylesSx } from "./HomeStyles"
 
 const Home = () => {
@@ -94,7 +92,11 @@ const Home = () => {
                     <b>
                       <Typewriter
                         options={{
-                          strings: ["Software Engineer", "Web Developer", "Dog Lovers"],
+                          strings: [
+                            "Software Engineer",
+                            "Web Developer",
+                            "Dog Lovers",
+                          ],
                           autoStart: true,
                           loop: true,
                         }}
