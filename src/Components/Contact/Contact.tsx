@@ -5,6 +5,8 @@ import {
   TextField,
   Button,
   Divider,
+  Modal,
+  Box,
   useMediaQuery,
 } from "@mui/material"
 // import emailjs from "emailjs-com"
@@ -12,11 +14,21 @@ import { FaGithub, FaLinkedin, FaPhone } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
 
 // file imports
-// import { db } from "../../firebaseConfig"
+import { db } from "../../firebaseConfig.ts";
+import { ref, push, set } from "firebase/database";
 import ContactStyles from "./ContactStyles"
 
-// import { init } from "emailjs-com"
-// init(process.env.REACT_APP_USER_ID)
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 const Contact = () => {
   // classes and queries
@@ -31,9 +43,20 @@ const Contact = () => {
   const [errorName, setErrorName] = useState(false)
   const [errorEmail, setErrorEmail] = useState(false)
   const [errorMessage, setErrorMessage] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
+
+  const resetFunction = () => {
+    setName("")
+    setEmail("")
+    setMessage("")
+    setErrorName(false)
+    setErrorEmail(false)
+    setErrorMessage(false)
+    setOpenModal(false)
+  }
 
   // event handler
-  const submitHander = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHander = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault() // prevents screen refresh
     // uses regex to verify email
     const emailRegex =
@@ -56,50 +79,22 @@ const Contact = () => {
         setErrorMessage(true)
       }
     } else {
-      // const firebaseObject = {
-      //   // object to be sent to firebase and email
-      //   name: name,
-      //   email: email,
-      //   message: message,
-      // }
+      const firebaseObject = {
+        name: name,
+        email: email,
+        message: message,
+      }
 
-      // send to firebase
-      // db.collection("contacts")
-      //   .add(firebaseObject)
-      //   .then(() => {
-      //     console.log("submitted to Firebase")
-      //   })
-      //   .catch((err) => {
-      //     console.log(err.message)
-      //   })
-
-      // send to email
-      // emailjs
-      //   .send(
-      //     process.env.REACT_APP_SERVICE_ID,
-      //     process.env.REACT_APP_TEMPLATE_ID,
-      //     {
-      //       name: name,
-      //       email: email,
-      //       to_name: "",
-      //       from_name: "",
-      //       message: message,
-      //     }
-      //   )
-      //   .then((response) => {
-      //     alert("Message has been submitted!")
-      //     console.log(response)
-      //   })
-      //   .catch((err) => {
-      //     console.log(err)
-      //   })
-
-      setName("")
-      setEmail("")
-      setMessage("")
-      setErrorName(false)
-      setErrorEmail(false)
-      setErrorMessage(false)
+      try {
+        const newCommentRef = push(ref(db, 'messages'));
+        set(newCommentRef, firebaseObject)
+          .then(() => {
+            setOpenModal(true)
+          })
+          .catch(error => console.error("Error adding comment: ", error))
+      } catch (error) {
+          console.error("Error adding comment: ", error);
+      }
     }
   }
 
@@ -256,6 +251,31 @@ const Contact = () => {
         </div>
       </Grid>
       <Grid item xs={1}></Grid>
+      <Modal
+        open={openModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Thank you. <br/>
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <span><strong>Name: </strong>{name}</span> <br/>
+            <span><strong>Email: </strong>{email}</span> <br/>
+            <span><strong>Message: </strong>{message}</span> <br/> <br/>
+            <span>Your message has been successfully sent.</span> <br/><br/><br/>
+          </Typography>
+          <Box 
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+            }}
+          >
+            <Button variant="contained" size="medium" color="info" onClick={resetFunction}>Ok</Button>
+          </Box>
+        </Box> 
+      </Modal>
     </Grid>
   )
 }
