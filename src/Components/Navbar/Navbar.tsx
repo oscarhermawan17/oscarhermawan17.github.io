@@ -85,9 +85,9 @@ const Navbar: React.FC = () => {
               <Link smooth="true" duration={1000} to="home">
                 <Tab sx={NavbarStylesSx.tabs} label="Home" />
               </Link>
-              <Link smooth="true" duration={1000} offset={-50} to="skills">
+              {/* <Link smooth="true" duration={1000} offset={-50} to="skills">
                 <Tab sx={NavbarStylesSx.tabs} label="Skills" />
-              </Link>
+              </Link> */}
               <Link smooth="true" duration={1000} offset={-70} to="projects">
                 <Tab sx={NavbarStylesSx.tabs} label="Projects" />
               </Link>
@@ -123,20 +123,20 @@ const Navbar: React.FC = () => {
                     <div className={classes.drawerTabSpacing}>
                       <Tab
                         onClick={toggleDrawer("left", false)}
-                        sx={NavbarStylesSx.tabs}
+                        className={classes.tabs}
                         label="Home"
                       />
                     </div>
                   </Link>
-                  <Link smooth="true" duration={1000} offset={-30} to="skills">
+                  {/* <Link smooth="true" duration={1000} offset={-30} to="skills">
                     <div className={classes.drawerTabSpacing}>
                       <Tab
                         onClick={toggleDrawer("left", false)}
-                        sx={NavbarStylesSx.tabs}
+                        className={classes.tabs}
                         label="Skills"
                       />
                     </div>
-                  </Link>
+                  </Link> */}
                   <Link
                     smooth="true"
                     duration={1000}
@@ -146,7 +146,7 @@ const Navbar: React.FC = () => {
                     <div className={classes.drawerTabSpacing}>
                       <Tab
                         onClick={toggleDrawer("left", false)}
-                        sx={NavbarStylesSx.tabs}
+                        className={classes.tabs}
                         label="Projects"
                       />
                     </div>
@@ -155,7 +155,7 @@ const Navbar: React.FC = () => {
                     <div className={classes.drawerTabSpacing}>
                       <Tab
                         onClick={toggleDrawer("left", false)}
-                        sx={NavbarStylesSx.tabs}
+                        className={classes.tabs}
                         label="About"
                       />
                     </div>
