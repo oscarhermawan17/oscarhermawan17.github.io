@@ -40,45 +40,51 @@ const Contact = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")
-  const [errorName, setErrorName] = useState(false)
-  const [errorEmail, setErrorEmail] = useState(false)
-  const [errorMessage, setErrorMessage] = useState(false)
+  const [errorName, setErrorName] = useState("")
+  const [errorEmail, setErrorEmail] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
   const [openModal, setOpenModal] = useState(false)
+  const emailRegex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  const maximumCharacter = 100
+
 
   const resetFunction = () => {
     setName("")
     setEmail("")
     setMessage("")
-    setErrorName(false)
-    setErrorEmail(false)
-    setErrorMessage(false)
+    setErrorName("")
+    setErrorEmail("")
+    setErrorMessage("")
     setOpenModal(false)
   }
+
+  const formValidation = ({ value, entity, setValue, setError }: { 
+    value: string,
+    entity: string,
+    setValue: (arg: string) => void,
+    setError: (arg: string) => void
+  }) => {
+    if (value === "") {
+      setError(`Please enter your ${entity}`)
+    } else if (entity === 'email' && !emailRegex.test(value)) {
+      setError(`Please enter a correct ${entity}`)
+    } else if (entity === 'message' && value.length > maximumCharacter) {
+      setError(`Please write a ${entity} under ${maximumCharacter} characters`)
+    } else {
+      setError("")
+    }
+    setValue(value)
+  }
+
+  const isFormValid = () => name && !errorName && email && !errorEmail && message && !errorMessage
 
   // event handler
   const submitHander = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault() // prevents screen refresh
-    // uses regex to verify email
-    const emailRegex =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    setErrorName(false)
-    setErrorEmail(false)
-    setErrorMessage(false)
 
-    // if a field is invalid, ensure that email is not submitted and error is thrown
-    if (name === "" || !emailRegex.test(email) || message === "") {
-      if (name === "") {
-        setErrorName(true)
-      }
-
-      if (!emailRegex.test(email)) {
-        setErrorEmail(true)
-      }
-
-      if (message === "") {
-        setErrorMessage(true)
-      }
-    } else {
+    if(isFormValid()) {
+      console.log({ errorName, errorEmail, errorMessage })
       const firebaseObject = {
         name: name,
         email: email,
@@ -205,35 +211,35 @@ const Contact = () => {
             <TextField
               className={classes.input}
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => formValidation({ value: e.target.value, entity: "name", setValue: setName, setError: setErrorName })}
               label="Name"
               variant="outlined"
-              error={errorName}
-              helperText={errorName ? "Please enter a name." : ""}
+              error={!!errorName}
+              helperText={errorName}
             />
             <br />
             <br />
             <TextField
               className={classes.input}
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => formValidation({ value: e.target.value, entity: "email", setValue: setEmail, setError: setErrorEmail })}
               label="Email"
               variant="outlined"
-              error={errorEmail}
-              helperText={errorEmail ? "Please enter a correct email." : ""}
+              error={!!errorEmail}
+              helperText={errorEmail}
             />
             <br />
             <br />
             <TextField
               className={classes.input}
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={(e) => formValidation({ value: e.target.value, entity: "message", setValue: setMessage, setError: setErrorMessage })}
               label="Message"
               multiline
               rows={10}
               variant="outlined"
-              error={errorMessage}
-              helperText={errorMessage ? "Please enter a message." : ""}
+              error={!!errorMessage}
+              helperText={errorMessage}
             />
             <br />
             <br />
@@ -243,6 +249,7 @@ const Contact = () => {
                 variant="contained"
                 size="large"
                 className={classes.button}
+                disabled={!isFormValid()}
               >
                 Submit
               </Button>
