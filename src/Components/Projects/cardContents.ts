@@ -1,6 +1,6 @@
 import pureFinance from "./Images/pure-finance.gif";
 import neoShop from "./Images/neo-shop.gif";
-import cardHero from "./Images/card-hero.png";
+import mapBox from "./Images/mapbox.gif";
 
 export const cardContents = [
 	{
@@ -17,12 +17,17 @@ export const cardContents = [
 		website: "http://203.194.112.12:3000/"
 	},
 	{
-		header: cardHero,
-		title: "8common-CardHero (Project)",
-		details: "A robust technology platform that offers enterprise a tailored card payment solution.",
-		website: "https://www.cardhero.co/"
+		header: mapBox,
+		title: "Maps created using Mapbox",
+		details: "[Mini Project] Build a simple Google Maps Clone using Mapbox",
+		source: "https://github.com/oscarhermawan17/trying_mapbox",
 	},
-	
+	// {
+	// 	header: cardHero,
+	// 	title: "8common-CardHero (Project)",
+	// 	details: "A robust technology platform that offers enterprise a tailored card payment solution.",
+	// 	website: "https://www.cardhero.co/"
+	// },
 ];
 
 // init for populating split arrays
