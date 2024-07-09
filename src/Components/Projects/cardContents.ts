@@ -1,6 +1,9 @@
 import pureFinance from "./Images/pure-finance.gif";
 import neoShop from "./Images/neo-shop.gif";
 import mapBox from "./Images/mapbox.gif";
+import cardHero from "./Images/mapbox.gif";
+import freeGame from "./Images/free-game.gif";
+
 
 export const cardContents = [
 	{
@@ -19,15 +22,28 @@ export const cardContents = [
 	{
 		header: mapBox,
 		title: "Maps created using Mapbox",
-		details: "[Mini Project] Build a simple Google Maps Clone using Mapbox",
+		details: "[Full Stack Mini Project] Build a simple Google Maps Clone using Mapbox",
 		source: "https://github.com/oscarhermawan17/trying_mapbox",
 	},
-	// {
-	// 	header: cardHero,
-	// 	title: "8common-CardHero (Project)",
-	// 	details: "A robust technology platform that offers enterprise a tailored card payment solution.",
-	// 	website: "https://www.cardhero.co/"
-	// },
+	{
+		header: cardHero,
+		title: "8common-CardHero (Project)",
+		details: "A robust technology platform that offers enterprise a tailored card payment solution.",
+		website: "https://www.cardhero.co/"
+	},
+	{
+		header: freeGame,
+		title: "Free Game (Project)",
+		details: "[Free Game] Build Memory and Sudoku game (9x9 with the solution using Bruteforce algoritm)",
+		website: "http://203.194.112.12:3001/",
+		source: "https://github.com/oscarhermawan17/games"
+	},
+	{
+		header: pureFinance,
+		title: "Pure Finance (Project)",
+		details: "Build a Finance Calculation Web Application for Users to Determine Their Borrowing Power",
+		website: "https://www.purefinance.com.au/calculate/funding-position/"
+	},
 ];
 
 // init for populating split arrays
