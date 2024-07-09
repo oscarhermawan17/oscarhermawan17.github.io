@@ -1,7 +1,7 @@
 import pureFinance from "./Images/pure-finance.gif";
 import neoShop from "./Images/neo-shop.gif";
 import mapBox from "./Images/mapbox.gif";
-import cardHero from "./Images/mapbox.gif";
+import cardHero from "./Images/card-hero.png";
 import freeGame from "./Images/free-game.gif";
 
 
