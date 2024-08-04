@@ -1,27 +1,24 @@
 // dependancies
-import { Grid, Typography, Divider, Button, useMediaQuery } from "@mui/material"
-import profile from "./Oscar.jpeg"
-import Resume from "../Home/resume.pdf"
-
-// icons
+import { Grid, Typography, Divider, Button, useMediaQuery, useTheme, Box } from "@mui/material"
 import { FaRegFilePdf } from "react-icons/fa"
 
 // file imports
-import useAboutStyles from "./AboutStyles"
+import { Styles as useAboutStylesx } from "./About.styles"
+import profile from "./Oscar.jpeg"
+import Resume from "../Home/resume.pdf"
 
 const About = () => {
-  // classes and queries
-  const classes = useAboutStyles()
+  const theme = useTheme();
+  const Styles = useAboutStylesx(theme);
   const md = useMediaQuery("(max-width: 960px)")
   const lg = useMediaQuery("(min-width: 960px)")
 
   return (
-    <div className={classes.background}>
+    <Box sx={Styles.background}>
       <Grid id="about" container>
-        {/* Title */}
-        <Grid className={classes.title} item xs={12}>
+        <Grid sx={Styles.title} item xs={12}>
           <br />
-          <Typography variant="h2">About Me</Typography>
+          <Typography variant="h2" sx={Styles.aboutMe}>About Me</Typography>
           <Typography variant="h4">- Get To Know Me -</Typography>
           <br />
           <br />
@@ -29,13 +26,13 @@ const About = () => {
         <Grid item xs={1}></Grid>
         {md && <Grid item xs={1}></Grid>}
         <Grid item xs={10} md={5}>
-          <div className={classes.picSpacing}>
+          <Box sx={Styles.picSpacing}>
             <img
               alt="Display"
               src={profile}
-              className={classes.profilePic}
+              style={Styles.profilePic}
             ></img>
-          </div>
+          </Box>
           <br />
           <br />
           <br />
@@ -47,21 +44,20 @@ const About = () => {
           <br />
           <Typography
             variant="h6"
-            className={classes.subTitle}
+            sx={Styles.subTitle}
             display="inline"
           >
             My name is Oscar Hermawan and I am a
           </Typography>
           <Typography
             variant="h6"
-            style={{ color: "#175fca" }}
-            className={classes.subTitle}
+            sx={Styles.subTitle2Nd}
             display="inline"
           >
             {" "}
             Software Engineer
           </Typography>
-          <div style={{ paddingBottom: "2%" }} />
+          <Box sx={{ paddingBottom: "2%" }} />
           <Typography variant="body1">
             I have experience working in web and mobile development with various
             frameworks and libraries such as JavaScript, React, React Native,
@@ -89,18 +85,18 @@ const About = () => {
               rel="noreferrer"
               target="_blank"
               href={Resume}
-              className={classes.links}
+              style={Styles.links}
             >
-              <div>
+              <Box>
                 <Button
                   variant="contained"
                   size="large"
-                  className={classes.button}
+                  sx={Styles.button}
                   startIcon={<FaRegFilePdf />}
                 >
                   Resume
                 </Button>
-              </div>
+              </Box>
             </a>
           )}
           {md && (
@@ -108,18 +104,18 @@ const About = () => {
               rel="noreferrer"
               target="_blank"
               href={Resume}
-              className={classes.links}
+              style={Styles.links}
             >
-              <div>
+              <Box>
                 <Button
                   variant="contained"
                   size="large"
-                  className={classes.buttonMobile}
+                  sx={Styles.buttonMobile}
                   startIcon={<FaRegFilePdf />}
                 >
                   Resume
                 </Button>
-              </div>
+              </Box>
             </a>
           )}
         </Grid>
@@ -127,10 +123,10 @@ const About = () => {
 
         {/* Bottom */}
         <Grid item xs={12}>
-          <div style={{ paddingBottom: "7%" }} />
+          <Box sx={{ paddingBottom: "7%" }} />
         </Grid>
       </Grid>
-    </div>
+    </Box>
   )
 }
 

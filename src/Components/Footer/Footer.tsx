@@ -1,16 +1,17 @@
-import FooterStyles from "./FooterStyles"
+// file imports
+import { Box } from "@mui/material"
+import { Styles } from "./Footer.styles"
 
 const Footer = () => {
-  const classes = FooterStyles()
 
   return (
-    <div className={classes.footer}>
-      <div className={classes.textContainer}>
+    <Box sx={Styles.footer}>
+      <Box sx={Styles.textContainer}>
         <span>Created by&nbsp;</span>
-        <span style={{ color: "#b5befa" }}>Oscar Hermawan&nbsp;</span>
+        <span style={Styles.name}>Oscar Hermawan&nbsp;</span>
         <span>| &nbsp;&#169; 2024 All rights reserved</span>
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 

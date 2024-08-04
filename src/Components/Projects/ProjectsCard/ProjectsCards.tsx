@@ -1,6 +1,9 @@
+// dependancies
 import { useState } from 'react'
-import { Card, CardContent, CardMedia, Typography } from "@mui/material"
-import ProjectsCardStyles from './ProjectsCardsStyles.ts'
+import { Box, Card, CardContent, CardMedia, Typography, useTheme } from "@mui/material"
+
+// file imports
+import { Styles as ProjectsCardStylesx } from './ProjectsCards.styles.ts'
 
 type Props = {
 	header: string;
@@ -14,8 +17,8 @@ type Link = "linkTextBlack" | "linkTextWhite"
 
 const ProjectsCards = (props: Props) => {
 	const { header, title, details, source, website } = props;
-
-	const classes = ProjectsCardStyles()
+	const theme = useTheme();
+  const Styles = ProjectsCardStylesx(theme);
 
 	const [link, setLink] = useState<Link>('linkTextBlack')
 
@@ -28,7 +31,7 @@ const ProjectsCards = (props: Props) => {
 	}
 
 	return (
-		<Card onMouseEnter={() => handleHover(true)} onMouseLeave={() => handleHover(false)} className={classes.root}>
+		<Card onMouseEnter={() => handleHover(true)} onMouseLeave={() => handleHover(false)} sx={Styles.root}>
 			<CardMedia
 				component="img"
 				alt="Image"
@@ -44,11 +47,11 @@ const ProjectsCards = (props: Props) => {
 					{details}<br /><br />
 				</Typography>
 
-				<div className={classes.linkContainer}>
-					<div className={classes.linkSpacing}>
+				<Box sx={Styles.linkContainer}>
+					<Box sx={Styles.linkSpacing}>
 						{source && <>
 							<a rel="noreferrer" target="_blank" href={source} style={{textDecoration: "none"}}>
-								<Typography className={classes[link]} display="inline">Source Code&nbsp;&nbsp;</Typography>
+								<Typography sx={Styles[link]} display="inline">Source Code&nbsp;&nbsp;</Typography>
 							</a>
 						</>}
 						{(source && website) && <>
@@ -56,11 +59,11 @@ const ProjectsCards = (props: Props) => {
 						</>}
 						{website && <>
 							<a rel="noreferrer" target="_blank" href={website} style={{textDecoration: "none"}}>
-								<Typography className={classes[link]} display="inline">Live&nbsp;</Typography>
+								<Typography sx={Styles[link]} display="inline">Live&nbsp;</Typography>
 							</a>
 						</>}
-					</div>
-				</div>
+					</Box>
+				</Box>
 			</CardContent>
 		</Card>
 

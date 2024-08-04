@@ -1,16 +1,22 @@
-import { makeStyles } from "@mui/styles"
 import { Theme } from "@mui/material/styles"
 
-const AboutStyles = makeStyles((theme: Theme) => ({
+export const Styles = (theme: Theme) => ({
   title: {
     textAlign: "center",
     color: theme.palette.secondary.dark,
+  },
+  aboutMe: {
+    fontWeight: 800
   },
   background: {
     backgroundColor: "white",
   },
   subTitle: {
     fontWeight: "600",
+  },
+  subTitle2Nd: { 
+    fontWeight: "600",
+    color: "#175fca" 
   },
   subTitleSmall: {
     fontWeight: "600",
@@ -68,6 +74,4 @@ const AboutStyles = makeStyles((theme: Theme) => ({
   links: {
     textDecoration: "none",
   },
-}))
-
-export default AboutStyles
+})

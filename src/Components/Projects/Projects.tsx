@@ -1,15 +1,18 @@
-import { useState } from 'react'
-import { Grid, Typography, IconButton, useMediaQuery, Slide } from "@mui/material"
+// dependancies
+import { useState } from "react"
+import { Grid, Typography, IconButton, useMediaQuery, Slide, Box, useTheme } from "@mui/material"
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 
-import ProjectsStyles from './ProjectsStyles.ts'
+// file imports
+import { Styles as ProjectsStyles } from "./Projects.styles.ts"
 import ProjectsCard from './ProjectsCard/ProjectsCards'
-import { cardContents, firstSectionCards, secondSectionCards, thirdSectionCards, firstSmallSectionCards, secondSmallSectionCards } from './cardContents.ts'
+import { cardContents, firstSectionCards, secondSectionCards, thirdSectionCards, firstSmallSectionCards, secondSmallSectionCards } from "./cardContents.ts"
 
 type Direction = "left" | "right" | "up" | "down" | undefined
 
 const Projects = () => {
-	const classes = ProjectsStyles();
+	const theme = useTheme();
+  const Styles = ProjectsStyles(theme);
 
 	const lg = useMediaQuery('(min-width: 1280px)');
 	const md = useMediaQuery('(max-width: 1279px)');
@@ -59,10 +62,10 @@ const Projects = () => {
 	}
 
 	return (
-		<Grid id="projects" className={classes.root} container>
-			<Grid className={classes.title} item xs={12}>
+		<Grid id="projects" sx={Styles.root} container>
+			<Grid sx={Styles.title} item xs={12}>
 				<br />
-				<Typography variant="h2">My Projects</Typography>
+				<Typography variant="h2" sx={Styles.myProject}>My Projects</Typography>
 				<Typography variant="h4">- What I am working on -</Typography>
 			</Grid>
 
@@ -70,16 +73,16 @@ const Projects = () => {
 
 			{lg && <>
 				<Grid item xs={1}>
-					<div className={classes.align}>
+					<Box sx={Styles.align}>
 						<IconButton onClick={() => changeStateLeft(3)} aria-label="arrow-left">
 							<ArrowBack />
 						</IconButton>
-					</div>
+					</Box>
 				</Grid>
 				<Grid item container spacing={1} xs={8}>
 					<Slide in={slide} direction={dir}>
 						<Grid item xs={4}>
-							<div className={classes.align}>
+							<Box sx={Styles.align}>
 								{firstSectionCards.map((firstSectionCard, index) => {
 									return (
 										state === index &&
@@ -93,12 +96,12 @@ const Projects = () => {
 										/>
 									);
 								})}
-							</div>
+							</Box>
 						</Grid>
 					</Slide>
 					<Slide in={slide} direction={dir}>
 						<Grid item xs={4}>
-							<div className={classes.align}>
+							<Box sx={Styles.align}>
 								{secondSectionCards.map((secondSectionCard, index) => {
 									return (
 										state === index &&
@@ -112,12 +115,12 @@ const Projects = () => {
 										/>
 									);
 								})}
-							</div>
+							</Box>
 						</Grid>
 					</Slide>
 					<Slide in={slide} direction={dir}>
 						<Grid item xs={4}>
-							<div className={classes.align}>
+							<Box sx={Styles.align}>
 								{thirdSectionCards.map((thirdSectionCard, index) => {
 									return (
 										state === index &&
@@ -131,32 +134,32 @@ const Projects = () => {
 										/>
 									);
 								})}
-							</div>
+							</Box>
 						</Grid>
 					</Slide>
 				</Grid>
 				<Grid item xs={1}>
-					<div className={classes.align}>
+					<Box sx={Styles.align}>
 						<IconButton onClick={() => changeStateRight(3)} aria-label="arrow-right">
 							<ArrowForward />
 						</IconButton>
-					</div>
+					</Box>
 				</Grid>
 			</>}
 
 			{md &&
 				sm && <>
 					<Grid item xs={1}>
-						<div className={classes.align}>
+						<Box sx={Styles.align}>
 							<IconButton onClick={() => changeStateLeft(2)} aria-label="arrow-left">
 								<ArrowBack />
 							</IconButton>
-						</div>
+						</Box>
 					</Grid>
 					<Grid item container spacing={1} xs={8}>
 						<Slide in={slide} direction={dir}>
 							<Grid item xs={6}>
-								<div className={classes.align}>
+								<Box sx={Styles.align}>
 									{firstSmallSectionCards.map((firstSmallSectionCard, index) => {
 										return (
 											state === index &&
@@ -170,12 +173,12 @@ const Projects = () => {
 											/>
 										);
 									})}
-								</div>
+								</Box>
 							</Grid>
 						</Slide>
 						<Slide in={slide} direction={dir}>
 							<Grid item xs={6}>
-								<div className={classes.align}>
+								<Box sx={Styles.align}>
 									{secondSmallSectionCards.map((secondSmallSectionCard, index) => {
 										return (
 											state === index &&
@@ -189,30 +192,30 @@ const Projects = () => {
 											/>
 										);
 									})}
-								</div>
+								</Box>
 							</Grid>
 						</Slide>
 					</Grid>
 					<Grid item xs={1}>
-						<div className={classes.align}>
+						<Box sx={Styles.align}>
 							<IconButton onClick={() => changeStateRight(2)} aria-label="arrow-right">
 								<ArrowForward />
 							</IconButton>
-						</div>
+						</Box>
 					</Grid>
 				</>}
 
 			{xs && <>
 				<Grid item xs={2} sm={1}>
-					<div className={classes.align}>
+					<Box sx={Styles.align}>
 						<IconButton onClick={() => changeStateLeft(1)} aria-label="arrow-left">
 							<ArrowBack />
 						</IconButton>
-					</div>
+					</Box>
 				</Grid>
 				<Grid item xs={8}>
 					<Slide in={slide} direction={dir}>
-						<div className={classes.align}>
+						<Box sx={Styles.align}>
 							{cardContents.map((cardContent, index) => {
 								return (
 									state === index &&
@@ -226,15 +229,15 @@ const Projects = () => {
 									/>
 								);
 							})}
-						</div>
+						</Box>
 					</Slide>
 				</Grid>
 				<Grid item xs={2} sm={1}>
-					<div className={classes.align}>
+					<Box sx={Styles.align}>
 						<IconButton onClick={() => changeStateRight(1)} aria-label="arrow-right">
 							<ArrowForward />
 						</IconButton>
-					</div>
+					</Box>
 				</Grid>
 			</>}
 		</Grid>

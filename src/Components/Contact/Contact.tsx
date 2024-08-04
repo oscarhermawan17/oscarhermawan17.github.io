@@ -1,3 +1,4 @@
+// dependancies
 import React, { useState } from "react"
 import {
   Grid,
@@ -8,31 +9,19 @@ import {
   Modal,
   Box,
   useMediaQuery,
+  useTheme
 } from "@mui/material"
-// import emailjs from "emailjs-com"
 import { FaGithub, FaLinkedin, FaPhone } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
+import { ref, push, set } from "firebase/database";
 
 // file imports
 import { db } from "../../firebaseConfig.ts";
-import { ref, push, set } from "firebase/database";
-import ContactStyles from "./ContactStyles"
-
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+import { Styles as ContactStyles } from "./Contact.styles"
 
 const Contact = () => {
-  // classes and queries
-  const classes = ContactStyles()
+  const theme = useTheme();
+  const Styles = ContactStyles(theme);
   const md = useMediaQuery("(max-width: 960px)")
   const lg = useMediaQuery("(min-width: 960px)")
 
@@ -81,10 +70,9 @@ const Contact = () => {
 
   // event handler
   const submitHander = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault() // prevents screen refresh
+    e.preventDefault() 
 
     if(isFormValid()) {
-      console.log({ errorName, errorEmail, errorMessage })
       const firebaseObject = {
         name: name,
         email: email,
@@ -105,11 +93,11 @@ const Contact = () => {
   }
 
   return (
-    <Grid container className={classes.root} id="contact">
+    <Grid container sx={Styles.root} id="contact">
       {/* Title */}
-      <Grid className={classes.title} item xs={12}>
+      <Grid sx={Styles.title} item xs={12}>
         <br />
-        <Typography variant="h2">Contact Me</Typography>
+        <Typography variant="h2" sx={Styles.contactMe}>Contact Me</Typography>
         <Typography variant="h4">- Can't Wait to Connect! -</Typography>
       </Grid>
 
@@ -133,7 +121,7 @@ const Contact = () => {
             <a
               rel="noreferrer"
               target="_blank"
-              className={classes.contact}
+              style={Styles.contact}
               href="mailto:oscar.hermawan90@gmail.com"
             >
               <Typography display="inline">
@@ -141,7 +129,7 @@ const Contact = () => {
                 oscar.hermawan90@gmail.com
               </Typography>
             </a>
-            <div />
+            <Box />
             <br />
             <FaPhone />
             &nbsp;
@@ -151,15 +139,15 @@ const Contact = () => {
             <a
               rel="noreferrer"
               target="_blank"
-              className={classes.contact}
+              style={Styles.contact}
               href="+62 853 921 910"
             >
-              <Typography className={classes.contact} display="inline">
+              <Typography sx={Styles.contact} display="inline">
                 {" "}
                 +62 853 921 910
               </Typography>
             </a>
-            <div />
+            <Box />
             <br />
             <FaGithub />
             &nbsp;
@@ -169,7 +157,7 @@ const Contact = () => {
             <a
               rel="noreferrer"
               target="_blank"
-              className={classes.contact}
+              style={Styles.contact}
               href="https://github.com/oscarhermawan17"
             >
               <Typography display="inline">
@@ -177,7 +165,7 @@ const Contact = () => {
                 github.com/oscarhermawan17
               </Typography>
             </a>
-            <div />
+            <Box />
             <br />
             <FaLinkedin />
             &nbsp;
@@ -187,7 +175,7 @@ const Contact = () => {
             <a
               rel="noreferrer"
               target="_blank"
-              className={classes.contact}
+              style={Styles.contact}
               href="https://www.linkedin.com/in/oscar-hermawan/"
             >
               <Typography display="inline">
@@ -206,10 +194,10 @@ const Contact = () => {
       {/* Contact Form */}
       {md && <Grid item xs={1}></Grid>}
       <Grid item xs={10} md={4}>
-        <div className={classes.formContainer}>
-          <form onSubmit={submitHander} className={classes.form}>
+        <Box sx={Styles.formContainer}>
+          <form onSubmit={submitHander} style={Styles.form}>
             <TextField
-              className={classes.input}
+              sx={Styles.input}
               value={name}
               onChange={(e) => formValidation({ value: e.target.value, entity: "name", setValue: setName, setError: setErrorName })}
               label="Name"
@@ -220,7 +208,7 @@ const Contact = () => {
             <br />
             <br />
             <TextField
-              className={classes.input}
+              sx={Styles.input}
               value={email}
               onChange={(e) => formValidation({ value: e.target.value, entity: "email", setValue: setEmail, setError: setErrorEmail })}
               label="Email"
@@ -231,7 +219,7 @@ const Contact = () => {
             <br />
             <br />
             <TextField
-              className={classes.input}
+              sx={Styles.input}
               value={message}
               onChange={(e) => formValidation({ value: e.target.value, entity: "message", setValue: setMessage, setError: setErrorMessage })}
               label="Message"
@@ -243,19 +231,19 @@ const Contact = () => {
             />
             <br />
             <br />
-            <div className={classes.center}>
+            <Box sx={Styles.center}>
               <Button
                 type="submit"
                 variant="contained"
                 size="large"
-                className={classes.button}
+                sx={Styles.button}
                 disabled={!isFormValid()}
               >
                 Submit
               </Button>
-            </div>
+            </Box>
           </form>
-        </div>
+        </Box>
       </Grid>
       <Grid item xs={1}></Grid>
       <Modal
@@ -263,7 +251,7 @@ const Contact = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={Styles.boxModal}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Thank you. <br/>
           </Typography>

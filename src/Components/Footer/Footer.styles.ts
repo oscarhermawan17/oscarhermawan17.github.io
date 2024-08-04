@@ -1,6 +1,4 @@
-import { makeStyles } from "@mui/styles"
-
-const FooterStyles = makeStyles(() => ({
+export const Styles = {
   footer: {
     display: "flex",
     background: "#0644A3",
@@ -14,6 +12,7 @@ const FooterStyles = makeStyles(() => ({
     display: "inline-block",
     textAlign: "center",
   },
-}))
-
-export default FooterStyles
+  name: {
+    color: "#b5befa"
+  }
+}

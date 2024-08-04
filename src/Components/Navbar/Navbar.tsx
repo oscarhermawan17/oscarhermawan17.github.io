@@ -1,3 +1,4 @@
+// dependancies
 import React, { useEffect, useRef, useState } from "react"
 import {
   useMediaQuery,
@@ -7,11 +8,13 @@ import {
   Tabs,
   IconButton,
   Drawer,
+  Box
 } from "@mui/material"
 import { Link } from "react-scroll"
 import { Menu } from "@mui/icons-material"
 
-import useStyles, { NavbarStylesSx } from "./NavbarStyles"
+// file imports
+import { Styles } from "./Navbar.styles"
 import logo from "./OscarLogo.png"
 
 type BackgroundType =
@@ -23,13 +26,9 @@ type BackgroundType =
   | "tabs"
   | "drawerTabSpacing"
 
-//header section of website
 const Navbar: React.FC = () => {
   const [state, setState] = useState({ left: false })
-  const [background, setBackground] =
-    useState<BackgroundType>("navbarTransparent")
-
-  const classes = useStyles()
+  const [background, setBackground] = useState<BackgroundType>("navbarTransparent")
   const desktop = useMediaQuery("(min-width: 900px)")
   const mobile = useMediaQuery("(max-width: 900px)")
 
@@ -42,7 +41,6 @@ const Navbar: React.FC = () => {
         ((event as React.KeyboardEvent).key === "Tab" ||
           (event as React.KeyboardEvent).key === "Shift")
       ) {
-        // detects if it was accidentally triggered
         return
       }
 
@@ -69,33 +67,33 @@ const Navbar: React.FC = () => {
   }, [])
 
   return (
-    <AppBar elevation={0} sx={NavbarStylesSx[navRef.current]}>
+    <AppBar elevation={0} sx={Styles[navRef.current]}>
       <Toolbar>
         {/* Initials */}
-        <div style={{ marginRight: "1%" }} />
+        <Box style={{ marginRight: "1%" }} />
         <Link smooth="true" duration={1000} to="home">
-          <img alt="logo" className={classes.logo} src={logo}></img>
+          <img alt="logo" style={Styles.logo} src={logo}></img>
         </Link>
-        <div className={classes.space} />
+        <Box sx={Styles.space} />
 
         {/* Desktop Tabs */}
         {desktop && (
           <>
             <Tabs aria-label="tabs">
               <Link smooth="true" duration={1000} to="home">
-                <Tab sx={NavbarStylesSx.tabs} label="Home" />
+                <Tab sx={Styles.tabs} label="Home" />
               </Link>
               {/* <Link smooth="true" duration={1000} offset={-50} to="skills">
-                <Tab sx={NavbarStylesSx.tabs} label="Skills" />
+                <Tab sx={Styles.tabs} label="Skills" />
               </Link> */}
               <Link smooth="true" duration={1000} offset={-70} to="projects">
-                <Tab sx={NavbarStylesSx.tabs} label="Projects" />
+                <Tab sx={Styles.tabs} label="Projects" />
               </Link>
               <Link smooth="true" duration={1000} offset={-70} to="about">
-                <Tab sx={NavbarStylesSx.tabs} label="About" />
+                <Tab sx={Styles.tabs} label="About" />
               </Link>
               <Link smooth="true" duration={1000} offset={-70} to="contact">
-                <Tab sx={NavbarStylesSx.tabs} label="Contact" />
+                <Tab sx={Styles.tabs} label="Contact" />
               </Link>
             </Tabs>
           </>
@@ -105,7 +103,7 @@ const Navbar: React.FC = () => {
         {mobile && (
           <>
             <IconButton onClick={toggleDrawer("left", true)} aria-label="menu">
-              <Menu sx={NavbarStylesSx.icon} />
+              <Menu sx={Styles.icon} />
             </IconButton>
             <Drawer
               variant="temporary"
@@ -113,29 +111,29 @@ const Navbar: React.FC = () => {
               open={state["left"]}
               onClose={toggleDrawer("left", false)}
             >
-              <div
+              <Box
                 role="presentation"
                 onClick={toggleDrawer("left", false)}
                 onKeyDown={toggleDrawer("left", false)}
               >
                 <Tabs orientation="vertical">
                   <Link smooth="true" duration={1000} to="home">
-                    <div className={classes.drawerTabSpacing}>
+                    <Box sx={Styles.drawerTabSpacing}>
                       <Tab
                         onClick={toggleDrawer("left", false)}
-                        className={classes.tabs}
+                        sx={Styles.tabs}
                         label="Home"
                       />
-                    </div>
+                    </Box>
                   </Link>
                   {/* <Link smooth="true" duration={1000} offset={-30} to="skills">
-                    <div className={classes.drawerTabSpacing}>
+                    <Box sx={Styles.drawerTabSpacing}>
                       <Tab
                         onClick={toggleDrawer("left", false)}
-                        className={classes.tabs}
+                        sx={Styles.tabs}
                         label="Skills"
                       />
-                    </div>
+                    </Box>
                   </Link> */}
                   <Link
                     smooth="true"
@@ -143,34 +141,34 @@ const Navbar: React.FC = () => {
                     offset={-60}
                     to="projects"
                   >
-                    <div className={classes.drawerTabSpacing}>
+                    <Box sx={Styles.drawerTabSpacing}>
                       <Tab
                         onClick={toggleDrawer("left", false)}
-                        className={classes.tabs}
+                        sx={Styles.tabs}
                         label="Projects"
                       />
-                    </div>
+                    </Box>
                   </Link>
                   <Link smooth="true" duration={1000} offset={-60} to="about">
-                    <div className={classes.drawerTabSpacing}>
+                    <Box sx={Styles.drawerTabSpacing}>
                       <Tab
                         onClick={toggleDrawer("left", false)}
-                        className={classes.tabs}
+                        sx={Styles.tabs}
                         label="About"
                       />
-                    </div>
+                    </Box>
                   </Link>
                   <Link smooth="true" duration={1000} offset={-60} to="contact">
-                    <div className={classes.drawerTabSpacing}>
+                    <Box sx={Styles.drawerTabSpacing}>
                       <Tab
                         onClick={toggleDrawer("left", false)}
-                        className={classes.tabs}
+                        sx={Styles.tabs}
                         label="Contact"
                       />
-                    </div>
+                    </Box>
                   </Link>
                 </Tabs>
-              </div>
+              </Box>
             </Drawer>
           </>
         )}

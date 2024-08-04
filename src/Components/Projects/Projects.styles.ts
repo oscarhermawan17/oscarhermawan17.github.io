@@ -1,7 +1,6 @@
-import { makeStyles } from "@mui/styles"
 import { Theme } from "@mui/material/styles"
 
-const ProjectsStyles = makeStyles((theme: Theme) => ({
+export const Styles = (theme: Theme) => ({
 	root: {
 		background: theme.palette.primary.dark
 	},
@@ -9,12 +8,13 @@ const ProjectsStyles = makeStyles((theme: Theme) => ({
 		textAlign: "center",
 		color: theme.palette.secondary.dark
 	},
+	myProject:{
+		fontWeight: 800
+	},
 	align: {
 		height: "80vh",
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
 	}
-}))
-
-export default ProjectsStyles;
+})

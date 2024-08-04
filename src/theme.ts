@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material/styles"
 //Theme setup for UI
 const theme = createTheme({
   typography: {
-    fontFamily: "Poppins, Roboto, Arial, sans-serif",
+    fontFamily: "Poppins, sans-serif",
     h1: {
       fontSize: "4.5rem",
       fontWeight: "550",

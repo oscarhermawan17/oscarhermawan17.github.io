@@ -1,7 +1,6 @@
-import { makeStyles } from "@mui/styles"
 import { Theme } from "@mui/material/styles"
 
-const ProjectsCardStyles = makeStyles((theme: Theme) => ({
+export const Styles = (theme: Theme) => ({
 	root: {
 		width: 300,
 		color: "#000000",
@@ -38,6 +37,4 @@ const ProjectsCardStyles = makeStyles((theme: Theme) => ({
 			color: "#b5befa",
 		}
 	}
-}))
-
-export default ProjectsCardStyles;
+})
