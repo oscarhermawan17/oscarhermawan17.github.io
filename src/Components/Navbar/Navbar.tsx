@@ -110,6 +110,11 @@ const Navbar: React.FC = () => {
               anchor="left"
               open={state["left"]}
               onClose={toggleDrawer("left", false)}
+              PaperProps={{
+                sx: {
+                  backgroundColor: 'black',
+                },
+              }}
             >
               <Box
                 role="presentation"
